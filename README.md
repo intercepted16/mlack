@@ -18,8 +18,9 @@ client = MockClient(token="xoxb-{}")
 # Example: Get the history of a channel
 client.conversations_history(channel="C1234567890")
 
-# Example: Post a message to a channel
-client.chat_postMessage(channel="C1234567890", text="Hello, world!")
+# Example: Get the replies to a thread
+client.conversations_replies(channel="C1234567890", ts="1234567890.123456")
+
 ```
 
 **PS**: This is still in development, so not all methods are available yet. If you want to contribute, feel free to open a PR.
