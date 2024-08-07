@@ -1,12 +1,11 @@
 import inspect
 
 import httpretty
-import os
 import functools
 
 from slack_sdk import WebClient
 
-from injector import inject
+from .injector import inject
 
 
 # Create the wrapper class
@@ -29,9 +28,12 @@ class MockClient(WebClient):
         self._apply_decorators()
 
     def _apply_decorators(self):
-        webclient_methods = {name for name, _ in inspect.getmembers(WebClient, predicate=inspect.isfunction)}
+        webclient_methods = {
+            name
+            for name, _ in inspect.getmembers(WebClient, predicate=inspect.isfunction)
+        }
         for method_name in dir(self):
-            if not method_name.startswith('_') and method_name in webclient_methods:
+            if not method_name.startswith("_") and method_name in webclient_methods:
                 method = getattr(self, method_name)
                 if callable(method):
                     decorated_method = dev_mode_decorator(method)

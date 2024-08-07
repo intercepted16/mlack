@@ -2,14 +2,16 @@
 A Python libary that wraps around the Slack API and makes it easy to test your Slack bot.
 
 ## Installation
-(Not yet available, still in development)
+In development mode (currently):
 ```bash
-pip install mlack
-```
+pip install git+github.com/intercepted16/src.git
+````
 
 ## Usage
+
 ```python
 from mlack import MockClient
+
 # Initialize the MockClient as normal
 client = MockClient(token="xoxb-{}")
 

@@ -1,20 +1,30 @@
-[tool.poetry]
+[project]
 name = "mlack"
 version = "0.1.0"
-description = "A mock Slack API for Python. Used for testing."
-authors = ["intercepted16 <162676516+intercepted16@users.noreply.github.com>"]
+description = "Add your description here"
+authors = [
+    { name = "intercepted16", email = "162676516+intercepted16@users.noreply.github.com" }
+]
+dependencies = [
+    "requests",
+    "httpretty",
+    "names",
+    "slack-sdk",
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-requests = "^2.26.0"
-httpretty = "^1.1.3"
-names = "^0.3.0"
-slack-sdk = "^3.31.0"
-pytest = "^8.3.2"
-
+requires-python = ">= 3.8"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
+[tool.rye]
+managed = true
+dev-dependencies = ["pytest"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+# Add itself to the wheel to test locally
+packages = ["src/mlack"]

@@ -32,12 +32,12 @@ class MockUserConversations:
                     "topic": {
                         "value": "Company-wide announcements and work-based matters",
                         "creator": "",
-                        "last_set": 0
+                        "last_set": 0,
                     },
                     "purpose": {
                         "value": "This channel is for team-wide communication and announcements. All team members are in this channel.",
                         "creator": "",
-                        "last_set": 0
+                        "last_set": 0,
                     },
                     "previous_names": [],
                 },
@@ -64,21 +64,19 @@ class MockUserConversations:
                     "topic": {
                         "value": "Non-work banter and water cooler conversation",
                         "creator": "",
-                        "last_set": 0
+                        "last_set": 0,
                     },
                     "purpose": {
                         "value": "A place for non-work-related flimflam, faffing, hodge-podge or jibber-jabber you'd "
                                  "prefer to keep out of more focused work-related channels.",
                         "creator": "",
-                        "last_set": 0
+                        "last_set": 0,
                     },
                     "previous_names": [],
-                    "num_members": 4
-                }
+                    "num_members": 4,
+                },
             ],
-            "response_metadata": {
-                "next_cursor": "dGVhbTpDMDYxRkE1UEI="
-            }
+            "response_metadata": {"next_cursor": "dGVhbTpDMDYxRkE1UEI="},
         }
 
 
@@ -91,32 +89,29 @@ class MockConversationsHistory:
                     "type": "message",
                     "user": "U123ABC456",
                     "text": "Hello!",
-                    "ts": "1512085950.000216"
+                    "ts": "1512085950.000216",
                 },
                 {
                     "type": "message",
                     "user": "U222BBB222",
                     "text": "Hi! How are you?",
-                    "ts": "1512104434.000490"
+                    "ts": "1512104434.000490",
                 },
                 {
                     "type": "message",
                     "user": "U123ABC456",
                     "ts": "1512104434.000490",
                     "thread_ts": "1512104434.0004900",
-                    "text": "Guys, how are you doing?"
-                }
+                    "text": "Guys, how are you doing?",
+                },
             ],
             "has_more": True,
             "pin_count": 0,
-            "response_metadata": {
-                "next_cursor": "bmV4dF90czoxNTEyMDg1ODYxMDAwNTQz"
-            }
+            "response_metadata": {"next_cursor": "bmV4dF90czoxNTEyMDg1ODYxMDAwNTQz"},
         }
 
 
 class MockConversationsReplies:
-
     def __init__(self):
         self.typical_response = {
             "ok": True,
@@ -126,9 +121,9 @@ class MockConversationsReplies:
                     "user": "U123ABC456",
                     "text": "Hello!",
                     "ts": "1512085950.000216",
-                    "parent_user_id": "U456XYZ789"
+                    "parent_user_id": "U456XYZ789",
                 },
-            ]
+            ],
         }
 
 
@@ -164,7 +159,7 @@ class MockUser:
                     "image_72": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
                     "image_192": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
                     "image_512": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "team": "T012AB3C4"
+                    "team": "T012AB3C4",
                 },
                 "is_admin": True,
                 "is_owner": False,
@@ -174,7 +169,6 @@ class MockUser:
                 "is_bot": False,
                 "updated": 1502138686,
                 "is_app_user": False,
-                "has_2fa": False
-            }
+                "has_2fa": False,
+            },
         }
-

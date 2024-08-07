@@ -1,5 +1,4 @@
-# It is not best practice to import everything, but this is an exception as we do actually need everything
-from mock_responses import *
+from .mock_responses import MockUser, MockUserConversations, MockConversationsHistory, MockConversationsReplies
 import json
 
 
@@ -18,18 +17,30 @@ def user_conversations(request, uri, response_headers):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
-        return [200, response_headers, json.dumps(MockUserConversations().typical_response)]
+        return [
+            200,
+            response_headers,
+            json.dumps(MockUserConversations().typical_response),
+        ]
 
 
 def conversations_history(request, uri, response_headers):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
-        return [200, response_headers, json.dumps(MockConversationsHistory().typical_response)]
+        return [
+            200,
+            response_headers,
+            json.dumps(MockConversationsHistory().typical_response),
+        ]
 
 
 def conversations_replies(request, uri, response_headers):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
-        return [200, response_headers, json.dumps(MockConversationsReplies().typical_response)]
+        return [
+            200,
+            response_headers,
+            json.dumps(MockConversationsReplies().typical_response),
+        ]
