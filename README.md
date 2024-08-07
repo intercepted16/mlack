@@ -4,7 +4,7 @@ A Python libary that wraps around the Slack API and makes it easy to test your S
 ## Installation
 In development mode (currently):
 ```bash
-pip install git+github.com/intercepted16/src.git
+pip install git+https://github.com/intercepted16/mlack.git
 ````
 
 ## Usage
