@@ -26,5 +26,4 @@ dev-dependencies = ["pytest"]
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-# Add itself to the wheel to test locally
 packages = ["src/mlack"]
