@@ -155,7 +155,7 @@ class MockUser:
                     "image_original": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
                     "image_24": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
                     "image_32": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "image_48": os.path.abspath("assets/slack.png"),
+                    "image_48": "https://slack.com/avatar",
                     "image_72": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
                     "image_192": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
                     "image_512": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",

@@ -4,6 +4,7 @@ from .mock_api import (
     user_conversations,
     conversations_history,
     conversations_replies,
+    avatar
 )
 
 
@@ -29,3 +30,5 @@ def inject():
         "https://slack.com/api/conversations.replies",
         body=conversations_replies,
     )
+    httpretty.register_uri(
+        httpretty.GET, "https://slack.com/avatar", body=avatar)

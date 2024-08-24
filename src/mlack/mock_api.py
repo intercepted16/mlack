@@ -1,3 +1,5 @@
+import os.path
+
 from .mock_responses import MockUser, MockUserConversations, MockConversationsHistory, MockConversationsReplies
 import json
 
@@ -44,3 +46,9 @@ def conversations_replies(request, uri, response_headers):
             response_headers,
             json.dumps(MockConversationsReplies().typical_response),
         ]
+
+def avatar(_request, _uri, response_headers):
+    # read the local png and return it
+    png_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "assets", "slack.png"))
+    with open(png_path, "rb") as f:
+        return [200, response_headers, f.read()]

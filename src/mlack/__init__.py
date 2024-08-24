@@ -6,6 +6,7 @@ import functools
 from slack_sdk import WebClient
 
 from .injector import inject
+import requests
 
 
 # Create the wrapper class
@@ -45,3 +46,8 @@ class MockClient(WebClient):
     def __getattr__(self, name):
         # Delegate attribute access to the wrapped client
         return getattr(self, name)
+
+    @staticmethod
+    @dev_mode_decorator
+    def get(url, *args, **kwargs):
+        return requests.get(url, *args, **kwargs)
