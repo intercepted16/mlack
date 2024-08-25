@@ -62,14 +62,25 @@ def avatar(_request, _uri, response_headers, event_bus):
     with open(png_path, "rb") as f:
         return [200, response_headers, f.read()]
 
-
-def post_message(request, uri, response_headers, event_bus):
+def handle_post_message_errors(request, uri, response_headers, event_bus):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
+    body = json.loads(request.body)
+    channel = body.get("channel")
+    print(event_bus.channels)
+    if channel not in [c["id"] for c in event_bus.channels]:
+        return [200, response_headers, json.dumps({"ok": False, "error": "channel_not_found"})]
     else:
-        body = json.loads(request.body)
-        # get unix timestamp now
-        ts = datetime.now(timezone.utc).timestamp()
-        body["ts"] = ts
-        event_bus.emit("message", body)
-        return [200, response_headers, json.dumps({"ok": True})]
+        return None
+
+
+def post_message(request, uri, response_headers, event_bus):
+    error = handle_post_message_errors(request, uri, response_headers, event_bus)
+    if error:
+        return error
+    body = json.loads(request.body)
+    # get unix timestamp now
+    ts = datetime.now(timezone.utc).timestamp()
+    body["ts"] = ts
+    event_bus.emit("message", body)
+    return [200, response_headers, json.dumps({"ok": True})]

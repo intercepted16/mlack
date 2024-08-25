@@ -11,13 +11,14 @@ from .mock_api import (
     conversations_replies,
     avatar, post_message,
 )
-from .slack import Messages
+from .mock_responses import MockUserConversations
 
 
 class EventBus:
     def __init__(self):
         self.listeners = {}
         self.messages = []
+        self.channels = MockUserConversations().typical_response["channels"]
 
     def on(self, event, callback):
         if event not in self.listeners:

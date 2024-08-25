@@ -3,6 +3,7 @@ import inspect
 from slack_sdk import WebClient
 
 from mlack import MockClient
+from mlack.mock_responses import MockUserConversations
 
 # We can use a random token; it's a mock client
 mock_client = MockClient(token="xoxb-{token}")
@@ -32,9 +33,6 @@ def test_users_info():
     assert response["user"]["id"] == "U123456"
 
 
-
-
-
 def test_avatar():
     """Assert that the image returned from a user can be retrieved"""
     response = mock_client.users_info(user="U123456")
@@ -48,14 +46,13 @@ def test_avatar():
 
 
 def test_post_message():
+    test_channel = MockUserConversations().typical_response["channels"][0]["id"]
+    print("Test channel is", test_channel)
     """Assert that the `post_message` method returns the correct response"""
-    response = mock_client.chat_postMessage(channel="C123456", text="Hello!")
+    response = mock_client.chat_postMessage(channel=test_channel, text="Hello!")
     assert response["ok"] is True
-
-def test_conversations_history():
-    """Assert that the `conversations_history` method returns the correct response"""
-    response = mock_client.conversations_history(channel="C123456")
-    assert response["ok"] is True
-    assert response["messages"] is not None
-    assert len(response["messages"]) != 0
-    print(response)
+    """Assert that the message was sent to the correct channel and is the correct message"""
+    history = mock_client.conversations_history(channel=test_channel)
+    assert history["ok"] is True
+    assert len(history["messages"]) == 1
+    assert history["messages"][0]["text"] == "Hello!"
