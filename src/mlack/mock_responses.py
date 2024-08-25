@@ -2,6 +2,8 @@ import os
 
 import names
 
+from mlack.globals import MOCK_AVATAR_URL
+
 
 class MockUserConversations:
     def __init__(self):
@@ -68,7 +70,7 @@ class MockUserConversations:
                     },
                     "purpose": {
                         "value": "A place for non-work-related flimflam, faffing, hodge-podge or jibber-jabber you'd "
-                                 "prefer to keep out of more focused work-related channels.",
+                        "prefer to keep out of more focused work-related channels.",
                         "creator": "",
                         "last_set": 0,
                     },
@@ -152,13 +154,13 @@ class MockUser:
                     "real_name_normalized": random_full_name,
                     "display_name_normalized": random_name,
                     "email": "spengler@ghostbusters.example.com",
-                    "image_original": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "image_24": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "image_32": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "image_48": "https://slack.com/avatar",
-                    "image_72": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "image_192": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
-                    "image_512": "https://.../avatar/e3b51ca72dee4ef87916ae2b9240df50.jpg",
+                    "image_original": MOCK_AVATAR_URL,
+                    "image_24": MOCK_AVATAR_URL,
+                    "image_32": MOCK_AVATAR_URL,
+                    "image_48": MOCK_AVATAR_URL,
+                    "image_72": MOCK_AVATAR_URL,
+                    "image_192": MOCK_AVATAR_URL,
+                    "image_512": MOCK_AVATAR_URL,
                     "team": "T012AB3C4",
                 },
                 "is_admin": True,
