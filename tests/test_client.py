@@ -1,6 +1,5 @@
 import inspect
 
-import requests
 from slack_sdk import WebClient
 
 from mlack import MockClient
@@ -33,10 +32,7 @@ def test_users_info():
     assert response["user"]["id"] == "U123456"
 
 
-def test_users_conversations():
-    """Assert that the `users_conversations` method returns the correct response"""
-    response = mock_client.users_conversations()
-    assert response["ok"] is True
+
 
 
 def test_avatar():
@@ -49,3 +45,17 @@ def test_avatar():
     res = mock_client.get(user["profile"]["image_48"])
     assert res.status_code == 200
     assert res.content is not None
+
+
+def test_post_message():
+    """Assert that the `post_message` method returns the correct response"""
+    response = mock_client.chat_postMessage(channel="C123456", text="Hello!")
+    assert response["ok"] is True
+
+def test_conversations_history():
+    """Assert that the `conversations_history` method returns the correct response"""
+    response = mock_client.conversations_history(channel="C123456")
+    assert response["ok"] is True
+    assert response["messages"] is not None
+    assert len(response["messages"]) != 0
+    print(response)

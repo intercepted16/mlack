@@ -1,15 +1,16 @@
 import os.path
+from datetime import datetime, timezone
+
 
 from .mock_responses import (
     MockUser,
     MockUserConversations,
-    MockConversationsHistory,
     MockConversationsReplies,
 )
 import json
 
 
-def users_info(request, uri, response_headers):
+def users_info(request, uri, response_headers, event_bus):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
@@ -20,7 +21,7 @@ def users_info(request, uri, response_headers):
         return [200, response_headers, json.dumps(MockUser(user).typical_response)]
 
 
-def user_conversations(request, uri, response_headers):
+def user_conversations(request, uri, response_headers, event_bus):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
@@ -31,18 +32,18 @@ def user_conversations(request, uri, response_headers):
         ]
 
 
-def conversations_history(request, uri, response_headers):
+def conversations_history(request, uri, response_headers, event_bus):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
         return [
             200,
             response_headers,
-            json.dumps(MockConversationsHistory().typical_response),
+            json.dumps({"ok": True, "messages": event_bus.messages}),
         ]
 
 
-def conversations_replies(request, uri, response_headers):
+def conversations_replies(request, uri, response_headers, event_bus):
     if not request.headers.get("Authorization"):
         return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
     else:
@@ -53,10 +54,22 @@ def conversations_replies(request, uri, response_headers):
         ]
 
 
-def avatar(_request, _uri, response_headers):
+def avatar(_request, _uri, response_headers, event_bus):
     # read the local png and return it
     png_path = os.path.abspath(
         os.path.join(os.path.dirname(__file__), "assets", "slack.png")
     )
     with open(png_path, "rb") as f:
         return [200, response_headers, f.read()]
+
+
+def post_message(request, uri, response_headers, event_bus):
+    if not request.headers.get("Authorization"):
+        return [200, response_headers, json.dumps({"ok": False, "error": "not_authed"})]
+    else:
+        body = json.loads(request.body)
+        # get unix timestamp now
+        ts = datetime.now(timezone.utc).timestamp()
+        body["ts"] = ts
+        event_bus.emit("message", body)
+        return [200, response_headers, json.dumps({"ok": True})]

@@ -1,5 +1,3 @@
-import os
-
 import names
 
 from mlack.globals import MOCK_AVATAR_URL
@@ -79,37 +77,6 @@ class MockUserConversations:
                 },
             ],
             "response_metadata": {"next_cursor": "dGVhbTpDMDYxRkE1UEI="},
-        }
-
-
-class MockConversationsHistory:
-    def __init__(self):
-        self.typical_response = {
-            "ok": True,
-            "messages": [
-                {
-                    "type": "message",
-                    "user": "U123ABC456",
-                    "text": "Hello!",
-                    "ts": "1512085950.000216",
-                },
-                {
-                    "type": "message",
-                    "user": "U222BBB222",
-                    "text": "Hi! How are you?",
-                    "ts": "1512104434.000490",
-                },
-                {
-                    "type": "message",
-                    "user": "U123ABC456",
-                    "ts": "1512104434.000490",
-                    "thread_ts": "1512104434.0004900",
-                    "text": "Guys, how are you doing?",
-                },
-            ],
-            "has_more": True,
-            "pin_count": 0,
-            "response_metadata": {"next_cursor": "bmV4dF90czoxNTEyMDg1ODYxMDAwNTQz"},
         }
 
 
