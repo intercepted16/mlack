@@ -1,4 +1,7 @@
 # Mlack
+
+<img src="docs/image.png" />
+
 A Python libary that wraps around the Slack API and makes it easy to test your Slack bot.
 
 ## Installation
